@@ -5,8 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+
+import static java.util.Arrays.asList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,39 +22,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-    }
+        ListView listView = findViewById(R.id.listView);
 
-    public void click(View view){
-        Double rate = 0.12;
-
-        //Log.i("amount entered: ", amountEditText.getText().toString());
-        Log.i("rate being used: ", rate.toString());
-
-        EditText amountEditText = (EditText) findViewById(R.id.amountEditText);
-        ImageView dellImageView = (ImageView) findViewById(R.id.dellImageView);
-        ImageView lenovoImageView = (ImageView) findViewById(R.id.lenovoImageView);
+        ArrayList<String> arrayList = new ArrayList<String>(asList("kbj", "stebak", "imKbj", "kofi_kyei"));
 
 
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, arrayList);
 
-        if(dellImageView.getAlpha() == 0.0){
-            dellImageView.animate().alpha(1).setDuration(2000);
-            lenovoImageView.animate().alpha(0).setDuration(2000);
-            Log.i("Alpha", ":" + dellImageView.getAlpha());
-            Log.i("Alpha", ":" + lenovoImageView.getAlpha());
-        }
+        listView.setAdapter(adapter);
 
-        if(lenovoImageView.getAlpha() == 0.0){
-            lenovoImageView.animate().alpha(1).setDuration(2000);
-            dellImageView.animate().alpha(0).setDuration(2000);
-            Log.i("Alpha", ":" + dellImageView.getAlpha());
-            Log.i("Alpha", ":" + lenovoImageView.getAlpha());
-        }
-
-//        try {
-//            Toast.makeText(this, "Converted Amount: " + rate * Integer.parseInt(amountEditText.getText().toString()), Toast.LENGTH_LONG).show();
-//        } catch (NumberFormatException e) {
-//            e.printStackTrace();
-//            Toast.makeText(this, "input format error", Toast.LENGTH_LONG).show();
-//        }
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Log.i("CLICKED", "onItemClick: " + arrayList.get(i));
+            }
+        });
     }
 }
