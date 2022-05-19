@@ -8,13 +8,13 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="104dp"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="313dp"
         android:onClick="click"
-        android:text="Convert"
+        android:text="Start animation"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
